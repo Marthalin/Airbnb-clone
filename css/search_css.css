@@ -1,0 +1,95 @@
+// Navbar
+//
+// Provide a static navbar from which we expand to create full-width, fixed, and
+// other navbar variations.
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; // allow us to do the line break for collapsing content
+  align-items: center;
+  justify-content: space-between; 
+  padding: $navbar-padding-y $navbar-padding-x;
+
+  // Because flex properties aren't inherited, we need to redeclare these first
+  // few properties so that content nested within behave properly.
+  %container-flex-properties {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+.nav-item{
+  color: #000000;
+}
+
+  .container,
+  .container-fluid {
+    @extend %container-flex-properties;
+  }
+
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    > .container#{breakpoint-infix($breakpoint, $container-max-widths)} {
+      @extend %container-flex-properties;
+    }
+  }
+}
+
+
+
+// Shorthand
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: $zindex-fixed;
+}
+
+.item-block {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap; 
+  flex-direction: column;
+  position: relative;
+  top:60px; }
+
+@media screen and (min-width: 400px) {
+  .sale-item {
+    width: 50%;
+    padding: 10px 5px; } }
+  .sale-item > .pic {
+  background-size: cover;
+  height: 250px;
+  width:250px;
+  background-repeat: no-repeat; 
+  float: left;}
+  
+.sale-item .name-price {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between; 
+  /*display: inline; 
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;*/}
+  .sale-item .name-price > p {
+    margin-bottom: 0px; 
+    line-height: 20px;
+    text-overflow: ellipsis;}
+  .sale-item .name-price p:first-of-type {
+    color: #484848; }
+.sale-item .room-type > a {
+  color: #484848; }
+
